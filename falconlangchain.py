@@ -1,6 +1,6 @@
 #pip install -q transformers einops accelerate langchain bitsandbytes
 
-from langchain import HuggingFacePipeline
+from langchain import HuggingFacePipeline, PromptTemplate,  LLMChain
 from transformers import AutoTokenizer, pipeline
 import torch
 
@@ -23,8 +23,6 @@ pipeline = pipeline(
 )
 
 llm = HuggingFacePipeline(pipeline = pipeline, model_kwargs = {'temperature':0})
-
-from langchain import PromptTemplate,  LLMChain
 
 template = """
 You are an intelligent chatbot. Help the following question with brilliant answers.
