@@ -30,4 +30,4 @@ def falcon():
     return response
 
 if __name__ == '__main__':
-    app.run(debut=True)
+    app.run(debug=True)
