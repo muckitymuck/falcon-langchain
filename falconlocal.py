@@ -4,7 +4,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 @app.route('/falcon', methods=['POST'])
 def falcon():
     text = request.json['text']
-    model_name = 'path/to/your/model'  # Replace with the path to your LLM model directory
+    model_name = 'home/ubuntu/treacefalcon-instruct'  # Replace with the path to your LLM model directory
 
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(model_name)
