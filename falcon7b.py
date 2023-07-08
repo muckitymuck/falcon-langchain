@@ -12,7 +12,7 @@ def falcon():
     text = request.json['text']
     model_name = 'tiiuae/falcon-7b-instruct'
     tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
-    pipeline = pipeline(
+    generated_pipeline = pipeline(
         "text-generation", #task
         model=model_name,
         tokenizer=tokenizer,
@@ -24,7 +24,7 @@ def falcon():
         num_return_sequences=1,
         eos_token_id=tokenizer.eos_token_id
     )
-    llm = HuggingFacePipeline(pipeline = pipeline, model_kwargs = {'temperature':0})
+    llm = HuggingFacePipeline(pipeline = generated_pipeline, model_kwargs = {'temperature':0})
 
     template = """
     You are an intelligent chatbot. Help the following question with brilliant answers.
