@@ -18,7 +18,6 @@ def falcon():
         tokenizer=tokenizer,
         torch_dtype=torch.bfloat16,
         trust_remote_code=True,
-        device_map="auto",
         max_length=200,
         do_sample=True,
         top_k=10,
@@ -29,3 +28,6 @@ def falcon():
 
     response = jsonify({'generated_text': generated_text})
     return response
+
+if __name__ == '__main__':
+    app.run(debut=True)
