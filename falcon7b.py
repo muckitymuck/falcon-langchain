@@ -3,6 +3,8 @@ from langchain import HuggingFacePipeline, PromptTemplate,  LLMChain
 from transformers import AutoTokenizer, pipeline
 import torch
 
+from huggingface_hub import hf_hub_download
+hf_hub_download(repo_id="tiiuae/falcon-7b-instruct", filename="config.json")
 
 app = Flask(__name__)
 
