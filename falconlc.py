@@ -19,4 +19,4 @@ def falcon():
     return response
 
 if __name__ == '__main__':
-    app.run(debug=True, threaded=False)
+    app.run(debug=True)
