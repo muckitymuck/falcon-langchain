@@ -1,16 +1,22 @@
 from flask import Flask, jsonify, request
-from langchain import HuggingFaceHub
-from langchain import PromptTemplate, LLMChain
-
-from huggingface_hub import hf_hub_download
-hf_hub_download(repo_id="tiiuae/falcon-7b-instruct", filename="config.json")
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 app = Flask(__name__)
 
 @app.route('/falcon', methods=['POST'])
-
 def falcon():
-    repo_id = "tiiuae/falcon-7b-instruct"
-    llm = HuggingFaceHub(repo_id=repo_id, model_kwargs={"temperature": 0.5, "max_length": 64})
-    llm_chain = LLMChain(prompt=prompt, llm=llm)
-    print(llm_chain.run(question))
+    text = request.json['text']
+    model_name = '/home/ubuntu/falcon-7b-instruct//'  # Replace with the path to your LLM model directory
+
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(model_name)
+
+    input_ids = tokenizer.encode(text, return_tensors="pt")
+    generated_ids = model.generate(input_ids, max_length=200, num_return_sequences=1)
+    generated_text = tokenizer.decode(generated_ids[0], skip_special_tokens=True)
+
+    response = jsonify({'generated_text': generated_text})
+    return response
+
+if __name__ == '__main__':
+    app.run(debug=True)
