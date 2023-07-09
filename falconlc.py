@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, request
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -19,4 +20,5 @@ def falcon():
     return response
 
 if __name__ == '__main__':
+    os.environ["TOKENIZERS_PARALLELISM"] = "false"
     app.run(debug=True)
