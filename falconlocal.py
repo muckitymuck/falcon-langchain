@@ -1,5 +1,6 @@
-from flask import jsonify
+from flask import Flask, jsonify, request
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
 
 app = Flask(__name__)
 @app.route('/falcon', methods=['POST'])
