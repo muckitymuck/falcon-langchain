@@ -1,7 +1,9 @@
 from flask import jsonify
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+app = Flask(__name__)
 @app.route('/falcon', methods=['POST'])
+
 def falcon():
     text = request.json['text']
     model_name = 'home/ubuntu/treacefalcon-instruct'  # Replace with the path to your LLM model directory
@@ -15,3 +17,7 @@ def falcon():
 
     response = jsonify({'generated_text': generated_text})
     return response
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
