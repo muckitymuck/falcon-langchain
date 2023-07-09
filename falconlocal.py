@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 def falcon():
     text = request.json['text']
-    model_name = 'home/ubuntu/treacefalcon-instruct'  # Replace with the path to your LLM model directory
+    model_name = 'treacefalcon-instruct/config.json'  # Replace with the path to your LLM model directory
 
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(model_name)
