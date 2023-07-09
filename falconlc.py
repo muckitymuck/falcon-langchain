@@ -1,3 +1,4 @@
+from flask import Flask, jsonify, request
 from langchain import HuggingFaceHub
 from langchain import PromptTemplate, LLMChain
 
