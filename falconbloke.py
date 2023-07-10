@@ -30,15 +30,15 @@ def falcon():
     Assistant:'''
     print("\n\n*** Generate:")
 
-    input_ids = tokenizer(prompt_template, return_tensors='pt').input_ids.cuda()
-    output = model.generate(inputs=input_ids, temperature=0.7, max_new_tokens=512)
-    print(tokenizer.decode(output[0]))
+    # input_ids = tokenizer(prompt_template, return_tensors='pt').input_ids.cuda()
+    # output = model.generate(inputs=input_ids, temperature=0.7, max_new_tokens=512)
+    # print(tokenizer.decode(output[0]))
     logging.set_verbosity(logging.CRITICAL)
 
     print("*** Pipeline:")
     pipe = pipeline(
         "text-generation",
-        model=model,
+        model=model_name,
         tokenizer=tokenizer,
         max_new_tokens=512,
         temperature=0.7,
