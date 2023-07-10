@@ -24,7 +24,7 @@ def falcon():
         use_triton=True,
         quantize_config=None)
 
-    prompt = "Tell me about AI"
+    prompt = text
     prompt_template=f'''A helpful assistant who helps the user with any questions asked.
     User: {prompt}
     Assistant:'''
