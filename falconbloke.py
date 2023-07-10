@@ -19,8 +19,8 @@ def generate():
             device="cuda:0",
             use_triton=use_triton,
             quantize_config=None)
-
-    prompt = "Tell me about AI"
+    request_data = request.get_json()
+    prompt = request_data.get('prompt', '')
     prompt_template=f'''A helpful assistant who helps the user with any questions asked.
     User: {prompt}
     Assistant:'''
