@@ -1,7 +1,11 @@
 from flask import Flask, jsonify, request
 from langchain import HuggingFacePipeline, PromptTemplate,  LLMChain
-from transformers import AutoTokenizer, pipeline
+from transformers import AutoTokenizer, pipeline, logging
+from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
 import torch
+import argparse
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 app = Flask(__name__)
 
