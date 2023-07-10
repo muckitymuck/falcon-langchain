@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/falcon', methods=['GET', 'POST'])
+@app.route('/falcon', methods=['POST'])
 def generate():
     model_name_or_path = "TheBloke/falcon-7b-instruct-GPTQ"
     model_basename = "gptq_model-4bit-64g"
@@ -25,8 +25,9 @@ def generate():
     User: {prompt}
     Assistant:'''
 
-    input_ids = tokenizer(prompt_template, return_tensors='pt').input_ids.cuda()
-    output = model.generate(inputs=input_ids, temperature=0.7, max_new_tokens=512)
+    input_ids = tokenizer.encode(prompt_template, return_tensors='pt', max_length=512).cuda()
+    attention_mask = input_ids.ne(tokenizer.pad_token_id).float().cuda()
+    output = model.generate(input_ids=input_ids, attention_mask=attention_mask, temperature=0.7, max_length=512)
     generated_text = tokenizer.decode(output[0])
 
     # Inference can also be done using transformers' pipeline
