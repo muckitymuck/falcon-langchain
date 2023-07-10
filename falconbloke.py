@@ -48,13 +48,13 @@ def generate():
             repetition_penalty=1.15
         )
         generated_text_pipeline = pipe(prompt_template)[0]['generated_text']
-        print(generated_text_pipeline)
+
         response = {
             'generated_text': generated_text,
             'generated_text_pipeline': generated_text_pipeline
         }
 
-        yield jsonify(response).encode()
+        yield jsonify(response)
 
     return generate_response()
 
