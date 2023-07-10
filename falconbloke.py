@@ -4,7 +4,7 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-@app.route('/generate', methods=['GET'])
+@app.route('/falcon', methods=['GET', 'POST'])
 def generate():
     model_name_or_path = "TheBloke/falcon-7b-instruct-GPTQ"
     model_basename = "gptq_model-4bit-64g"
