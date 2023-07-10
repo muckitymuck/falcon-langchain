@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, request, stream_with_context
+import json
+from flask import Flask, request, stream_with_context
 from transformers import AutoTokenizer, pipeline, logging
 from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
 
@@ -54,11 +55,9 @@ def generate():
             'generated_text_pipeline': generated_text_pipeline
         }
 
-        yield jsonify(response)
+        yield json.dumps(response).encode()
 
     return generate_response()
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
