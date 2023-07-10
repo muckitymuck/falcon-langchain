@@ -16,7 +16,7 @@ def falcon():
     model_name = 'TheBloke/falcon-7b-instruct-GPTQ'
     tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
     model_basename = "gptq_model-4bit-64g"
-    model = AutoGPTQForCausalLM.from_quantized(model_name_or_path,
+    model = AutoGPTQForCausalLM.from_quantized(model_name,
         model_basename=model_basename,
         use_safetensors=True,
         trust_remote_code=True,
