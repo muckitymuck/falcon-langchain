@@ -19,7 +19,7 @@ model = AutoGPTQForCausalLM.from_quantized(model_name_or_path,
         use_safetensors=True,
         trust_remote_code=True,
         device="cuda:0",
-        use_triton=True,
+        use_triton=use_triton,
         quantize_config=None)
 
 prompt = "Tell me about AI"

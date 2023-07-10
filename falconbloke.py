@@ -21,7 +21,7 @@ def falcon():
         use_safetensors=True,
         trust_remote_code=True,
         device="cuda:0",
-        use_triton=True,
+        use_triton=use_triton,
         quantize_config=None)
 
     prompt = text
@@ -40,7 +40,7 @@ def falcon():
         "text-generation",
         model=model,
         tokenizer=tokenizer,
-        max_new_tokens=2048,
+        max_new_tokens=512,
         temperature=0.7,
         top_p=0.95,
         repetition_penalty=1.15
